@@ -1,0 +1,21 @@
+{
+    "name": "benrowe/formatter",
+    "description": "A value formatter to display data to end users",
+    "keywords": ["formatter", "output", "view"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ben Rowe",
+            "email": "ben.rowe.83@gmail.com"
+        }
+    ],
+    "require": {
+      "php": ">=5.5.9",
+      "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Benrowe\\Formatter\\": "src/"
+        }
+    }
+}
