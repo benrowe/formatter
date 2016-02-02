@@ -3,6 +3,7 @@
 namespace Benrowe\Formatter;
 
 use \ReflectionClass;
+use \ReflectionMethod;
 use InvalidArgumentException;
 
 /**
@@ -69,7 +70,7 @@ class Formatter
      */
     public function getLocalFormats()
     {
-        $class   = new \ReflectionClass($this);
+        $class   = new ReflectionClass($this);
         $methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
         $prefix  = $this->formatMethodPrefix;
 
