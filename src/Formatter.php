@@ -5,12 +5,20 @@ namespace Benrowe\Formatter;
 use \ReflectionClass;
 use InvalidArgumentException;
 
+/**
+ * 
+ * 
+ * @package Benrowe\Formatter
+ */
 class Formatter
 {
     private $defaultFormatter = '';
     private $formatters = [];
     private $formatMethodPrefix = 'as';
 
+    /**
+     * @param array $formatters specif
+     */
     public function __construct($formatters = [])
     {
         $localFormatters = $this->getLocalFormats();
@@ -81,5 +89,4 @@ class Formatter
     {
         return array_key_exists($format, $this->formatters);
     }
-
 }
