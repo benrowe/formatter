@@ -13,7 +13,7 @@ use InvalidArgumentException;
  */
 class Formatter
 {
-    private $defaultFormatter = '';
+    private $defaultFormatter = 'raw';
     private $formatters = [];
     private $formatMethodPrefix = 'as';
 
@@ -81,6 +81,14 @@ class Formatter
         return array_map(function($method) {
             return strtolower(substr($method->name, strlen($this->formatMethodPrefix)));
         }, $formatMethods);
+    }
+
+    public function asRaw($value)
+    {
+        if ($value === null) {
+            return $this->nullValue;
+        }
+        return $value;
     }
 
     /**
