@@ -110,7 +110,10 @@ class Formatter
      */
     public function __call($method, $params)
     {
-
+        $format = strtolower(substr($method, strlen($this->formatMethodPrefix)));
+        $value = array_shift($params);
+        array_unshift($params, $format);
+        return $this->format($value, $params);
     }
 
     /**
