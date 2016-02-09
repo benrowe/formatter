@@ -17,6 +17,8 @@ class Formatter
     private $formatters = [];
     private $formatMethodPrefix = 'as';
 
+    public $nullValue = '<span>Not Set</span>';
+
     /**
      * @param array $formatters specif
      */
