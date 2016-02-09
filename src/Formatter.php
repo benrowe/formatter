@@ -51,10 +51,10 @@ class Formatter
             $format[0] = $value;
             $params = $format;
             $format = $tmpFormat;
+        }
 
-            if (!$this->hasFormat($format)) {
-                throw new InvalidArgumentException('Unknown format: ' . $format);
-            }
+        if (!$this->hasFormat($format)) {
+            throw new InvalidArgumentException('Unknown format: "' . $format . '"');
         }
 
         $func = [$this, 'as'.ucfirst($format)];
