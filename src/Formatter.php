@@ -66,9 +66,12 @@ class Formatter
     }
 
     /**
-     * Get a list of the local formatter methods
+     * Get a list of the localy available formats
+     * These are defined as formats as defined as public 'asFormat'
+     * within this class
      *
-     * @return array
+     * @return array where the key is the format, and the
+     *                     value is a reference to the callback
      */
     public function getLocalFormats()
     {
@@ -85,6 +88,12 @@ class Formatter
         }, $formatMethods);
     }
 
+    /**
+     * Format the value as is, with the only acception being null values
+     *
+     * @param mixed $value the value to be formatted
+     * @return mixed the formatted value
+     */
     public function asRaw($value)
     {
         if ($value === null) {
@@ -94,7 +103,7 @@ class Formatter
     }
 
     /**
-     *
+     * Allow for dynamic
      */
     public function __call($method, $params)
     {
@@ -103,6 +112,8 @@ class Formatter
 
     /**
      * Determine if the format exists within the formatter.
+     *
+     * @return boolean
      */
     private function hasFormat($format)
     {
