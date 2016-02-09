@@ -25,7 +25,7 @@ class Formatter
     public function __construct($formatters = [])
     {
         $localFormatters = $this->getLocalFormats();
-        $this->formatters = $formatters = array_merge($localFormatters, $formatters);
+        $this->formatters = array_merge($localFormatters, $formatters);
     }
 
     /**
@@ -83,9 +83,12 @@ class Formatter
             return strpos($method->name, $prefix) === 0;
         });
 
-        return array_map(function($method) {
-            return strtolower(substr($method->name, strlen($this->formatMethodPrefix)));
-        }, $formatMethods);
+        $formats = [];
+        foreach ($formatMethods as $method) {
+            $format = strtolower(substr($method->name, strlen($this->formatMethodPrefix)));
+            $formats[$format] = $method->name;
+        }
+        return $formats;
     }
 
     /**
