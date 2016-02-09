@@ -23,7 +23,7 @@ class FormatterTest extends PHPUnit_Framework_TestCase
             return strrev($value);
         }]);
 
-        $this->assertSame('neb', $formatter->format('ben', 'via format()'));
+        $this->assertSame('neb', $formatter->format('ben', 'reverse'), 'via format()');
         $this->assertSame('neb', $formatter->asReverse('ben'), 'via asReverse()');
 
     }
@@ -37,8 +37,9 @@ class FormatterTest extends PHPUnit_Framework_TestCase
             return str_rot13($value);
         }]);
 
-        $this->assertSame('ora', $formatter->asRaw('ben'));
-        $this->assertSame('ora', $formatter->format('ben'));
+        $this->assertSame('ora', $formatter->format('ben'), 'via format()');
+        $this->assertSame('ora', $formatter->asRaw('ben'), 'via asRaw()');
+
         $this->assertSame($formatter->nullValue, $formatter->format(null));
     }
 
