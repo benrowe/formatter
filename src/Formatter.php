@@ -57,9 +57,14 @@ class Formatter
             throw new InvalidArgumentException('Unknown format: "' . $format . '"');
         }
 
-        $func = [$this, 'as'.ucfirst($format)];
-        if (!method_exists($this, $func[1])) {
-            $func = $this->formatters[$format];
+        // is the formatter in a custom defined
+
+        $callback = $this->formatters[$format];
+
+        if ($callback instanceof \Closure) {
+            $func = $callback->bindTo($this);
+        } else if (method_exists($this, $callback)) {
+            $func = [$this, $callback];
         }
 
         return call_user_func_array($func, $params);
