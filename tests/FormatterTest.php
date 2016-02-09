@@ -38,7 +38,6 @@ class FormatterTest extends PHPUnit_Framework_TestCase
         }]);
 
         $this->assertSame('ora', $formatter->format('ben'), 'via format()');
-        $this->assertSame('ora', $formatter->asRaw('ben'), 'via asRaw()');
 
         $this->assertSame($formatter->nullValue, $formatter->format(null));
     }
