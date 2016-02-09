@@ -123,6 +123,6 @@ class Formatter
      */
     private function hasFormat($format)
     {
-        return array_key_exists($format, $this->formatters);
+        return array_key_exists(strtolower($format), $this->formatters);
     }
 }
