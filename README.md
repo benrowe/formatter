@@ -2,3 +2,5 @@
 
 # formatter
 Value formatter for view display
+
+Formats the values to a specific type.
