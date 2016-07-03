@@ -4,9 +4,23 @@ use Benrowe\Formatter\Formatter;
 
 class FormatterTest extends PHPUnit_Framework_TestCase
 {
+    private $formatter;
+
+    public function setUp()
+    {
+        $this->formatter = new Formatter([
+            'raw' => function ($value) {
+                if ($value === null) {
+                    return $this->nullValue;
+                }
+                return $value;
+            }
+        ]);
+    }
+
     public function testBasic()
     {
-        $formatter = new Formatter;
+        $formatter = $this->formatter;
         $this->assertSame('ben', $formatter->asRaw('ben'));
         $this->assertSame($formatter->nullValue, $formatter->format(null, 'raw'));
         $this->assertSame($formatter->nullValue, $formatter->format(null));
