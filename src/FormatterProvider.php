@@ -30,8 +30,9 @@ interface FormatterProvider
      * Format the corresponding value to the format provided
      *
      * @param  mixed $value
-     * @param  array $params
+     * @param  string|array $format either the format as a string, or an array,
+     *                              where the first element is the format type
      * @return mixed
      */
-    public function format($value, array $params = []);
+    public function format($value, $format = null);
 }
