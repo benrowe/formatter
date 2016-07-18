@@ -14,8 +14,24 @@ use InvalidArgumentException;
  */
 class Formatter
 {
+    /**
+     * If no formatter is specified, this formatter is used by default
+     *
+     * @var string
+     */
     private $defaultFormatter;
+
+    /**
+     * The list of available formatters.
+     * The key is the same key that is exposed in the format() method
+     * The value is either a Closure, a FQC, or an object that implements the
+     * FormatterProvider interface
+     *
+     * @var array
+     */
     private $formatters = [];
+
+    
     private $formatMethodPrefix = 'as';
 
     public $nullValue = '<span>Not Set</span>';
@@ -101,7 +117,6 @@ class Formatter
             $params = $format;
             $format = $tmpFormat;
         }
-
         if (!$this->hasFormat($format)) {
             throw new InvalidArgumentException('Unknown format: "' . $format . '"');
         }
