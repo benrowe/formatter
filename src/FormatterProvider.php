@@ -19,6 +19,14 @@ interface FormatterProvider
     public function formats();
 
     /**
+     * Checks if the format exists
+     *
+     * @param  string  $format
+     * @return boolean
+     */
+    public function hasFormat($format);
+
+    /**
      * Format the corresponding value to the format provided
      *
      * @param  mixed $value
