@@ -2,10 +2,16 @@
 
 use Benrowe\Formatter\Formatter;
 
+/**
+ * Test the basic formatter functionality
+ */
 class FormatterTest extends PHPUnit_Framework_TestCase
 {
     private $formatter;
 
+    /**
+     * Setup formatter instance
+     */
     public function setUp()
     {
         $this->formatter = new Formatter([
