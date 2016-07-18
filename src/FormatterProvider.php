@@ -25,5 +25,5 @@ interface FormatterProvider
      * @param  array $params
      * @return mixed
      */
-    public function format($value, array $params = [])
+    public function format($value, array $params = []);
 }
