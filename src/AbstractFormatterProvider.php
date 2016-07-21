@@ -47,18 +47,16 @@ abstract class AbstractFormatterProvider implements FormatterProvider
     }
 
     /**
-     * Format the supplied value, based on the desired format + configuration
-     *
-     * @param  mixed $value The value to format
-     * @param  string|array $format either the formatter name, or the formatter
-     *                              config as an array. If it's an array, the
-     *                              first item must be the same of the formatter
-     * @return mixed
+     * Combine the value & params
+     * @param  mixed $value  the value (first argument of the format method)
+     * @param  string|array $format the name of the formatter, or an array of
+     *                              the formatter and its addtional params
+     * @return array of two elements, format and the params for the formatter
+     *                  method
+     * @throws InvalidArgumentException if the format is incorrect
      */
-    public function format($value, $format = null)
+    protected function extractFormatAndParams($value, $format)
     {
-        $format = $format ?: $this->defaultFormatter;
-
         $params = [$value];
 
         if (is_array($format)) {
@@ -67,11 +65,30 @@ abstract class AbstractFormatterProvider implements FormatterProvider
                     'The $format must contain at least one element'
                 );
             }
-            $tmpFormat = $format[0];
-            $format[0] = $value;
             $params = $format;
-            $format = $tmpFormat;
+            $format = array_unshift($params);
+            var_dump($format);
+            $params = array_shift($value);
         }
+
+        return [$format, $params];
+    }
+
+    /**
+     * Format the supplied value, based on the desired format + configuration
+     *
+     * @param  mixed $value The value to format
+     * @param  string|array $format either the formatter name, or the formatter
+     *                              config as an array. If it's an array, the
+     *                              first item must be the same of the formatter
+     * @return mixed
+     * @throws InvalidArgumentException if the format is incorrect
+     */
+    public function format($value, $format = null)
+    {
+        $format = $format ?: $this->defaultFormatter;
+
+        list($format, $params) = $this->extractFormatAndParams($value, $format);
 
         if (!$this->hasFormat($format)) {
             throw new InvalidArgumentException(
