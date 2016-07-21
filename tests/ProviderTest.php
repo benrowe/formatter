@@ -11,8 +11,10 @@ class ProviderTest extends PHPUnit_Framework_TestCase
         $this->provider = new SampleProvider();
     }
 
-    public function testFormats()
+    public function testAvailableFormats()
     {
         $this->assertSame(['return', 'rot', 'case'], $this->provider->formats());
+        $this->assertSame('foo', $this->provider->asReturn('foo'));
+        $this->assertSame('foo', $this->provider->format('foo', 'return'));
     }
 }
