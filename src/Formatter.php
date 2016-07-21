@@ -31,7 +31,6 @@ class Formatter
      */
     private $formatters = [];
 
-    
     private $formatMethodPrefix = 'as';
 
     public $nullValue = '<span>Not Set</span>';
@@ -43,7 +42,6 @@ class Formatter
      */
     public function __construct($formatters = [])
     {
-        // $localFormatters = $this->getLocalFormats($this);
         foreach ($formatters as $formatter => $closure) {
             $this->addFormatter($formatter, $closure);
         }
@@ -110,7 +108,9 @@ class Formatter
 
         if (is_array($format)) {
             if (!isset($format[0])) {
-                throw new InvalidArgumentException('The $format must contain at least one element');
+                throw new InvalidArgumentException(
+                    'The $format must contain at least one element'
+                );
             }
             $tmpFormat = $format[0];
             $format[0] = $value;
@@ -118,7 +118,9 @@ class Formatter
             $format = $tmpFormat;
         }
         if (!$this->hasFormat($format)) {
-            throw new InvalidArgumentException('Unknown format: "' . $format . '"');
+            throw new InvalidArgumentException(
+                'Unknown format: "' . $format . '"'
+            );
         }
 
         // is the formatter in a custom defined
