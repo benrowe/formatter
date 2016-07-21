@@ -12,7 +12,7 @@ use InvalidArgumentException;
  *
  * @package Benrowe\Formatter
  */
-class Formatter
+class Formatter implements FormatterProvider
 {
     /**
      * If no formatter is specified, this formatter is used by default
@@ -163,6 +163,11 @@ class Formatter
         return $formats;
     }
 
+    public function formats()
+    {
+
+    }
+
     /**
      * Allow dynamic calls to be made to the formatter
      */
@@ -179,7 +184,7 @@ class Formatter
      *
      * @return boolean
      */
-    private function hasFormat($format)
+    public function hasFormat($format)
     {
         return array_key_exists(strtolower($format), $this->formatters);
     }
