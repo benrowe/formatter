@@ -12,14 +12,14 @@ use InvalidArgumentException;
  *
  * @package Benrowe\Formatter
  */
-class Formatter implements FormatterProvider
+class Formatter extends AbstractFormatterProvider
 {
     /**
      * If no formatter is specified, this formatter is used by default
      *
      * @var string
      */
-    private $defaultFormatter;
+    protected $defaultFormatter;
 
     /**
      * The list of available formatters.
@@ -104,19 +104,8 @@ class Formatter implements FormatterProvider
     {
         $format = $format ?: $this->defaultFormatter;
 
-        $params = [$value];
+        list($format, $params) = $this->extractFormatAndParams($value, $format);
 
-        if (is_array($format)) {
-            if (!isset($format[0])) {
-                throw new InvalidArgumentException(
-                    'The $format must contain at least one element'
-                );
-            }
-            $tmpFormat = $format[0];
-            $format[0] = $value;
-            $params = $format;
-            $format = $tmpFormat;
-        }
         if (!$this->hasFormat($format)) {
             throw new InvalidArgumentException(
                 'Unknown format: "' . $format . '"'
