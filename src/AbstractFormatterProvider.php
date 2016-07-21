@@ -66,9 +66,8 @@ abstract class AbstractFormatterProvider implements FormatterProvider
                 );
             }
             $params = $format;
-            $format = array_unshift($params);
-            var_dump($format);
-            $params = array_shift($value);
+            $format = array_shift($params);
+            array_unshift($params, $value);
         }
 
         return [$format, $params];
