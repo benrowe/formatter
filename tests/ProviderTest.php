@@ -2,6 +2,10 @@
 
 use Benrowe\Formatter\Test\Examples\SampleProvider;
 
+/**
+ * Test a concrete version of the AbstractFormatterProvider
+ * Ensure that the formatters are available
+ */
 class ProviderTest extends PHPUnit_Framework_TestCase
 {
     private $provider;
@@ -16,5 +20,21 @@ class ProviderTest extends PHPUnit_Framework_TestCase
         $this->assertSame(['return', 'rot', 'case'], $this->provider->formats());
         $this->assertSame('foo', $this->provider->asReturn('foo'));
         $this->assertSame('foo', $this->provider->format('foo', 'return'));
+    }
+
+    public function testHasFormat()
+    {
+        $this->assertTrue($this->provider->hasFormat('return'));
+        $this->assertFalse($this->provider->hasFormat('doesnotexist'));
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     *
+     */
+    public function testInvalidFormatNameSyntax()
+    {
+        $this->provider->hasFormat('something.something');
+
     }
 }
