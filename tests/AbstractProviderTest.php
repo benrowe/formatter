@@ -6,7 +6,7 @@ use Benrowe\Formatter\Test\Examples\SampleProvider;
  * Test a concrete version of the AbstractFormatterProvider
  * Ensure that the formatters are available
  */
-class ProviderTest extends PHPUnit_Framework_TestCase
+class AbstractProviderTest extends PHPUnit_Framework_TestCase
 {
     private $provider;
 
