@@ -129,8 +129,6 @@ class Formatter extends AbstractFormatterProvider
         }, $formats);
     }
 
-
-
     /**
      * Format the provided value based on the requested formatter
      *
@@ -166,7 +164,7 @@ class Formatter extends AbstractFormatterProvider
     }
 
     /**
-     * Get the current list of provided formatters
+     * Get the current list of available formats
      *
      * @return array
      */
