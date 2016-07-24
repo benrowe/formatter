@@ -23,14 +23,14 @@ class Formatter extends AbstractFormatterProvider
     protected $defaultFormatter;
 
     /**
-     * The list of available formatters.
+     * The list of available formatter providers.
      * The key is the same key that is exposed in the format() method
      * The value is either a Closure, a FQC, or an object that implements the
      * FormatterProvider interface
      *
      * @var array list of formatters & providers|closures
      */
-    private $formatters = [];
+    private $providers = [];
 
     /**
      * A list of all the available formats. If a formatter is an instance of
@@ -97,7 +97,7 @@ class Formatter extends AbstractFormatterProvider
             throw new InvalidArgumentException('Supplied formatter is not supported');
         }
         $name = strtolower($name);
-        $this->formatters[$name] = $method;
+        $this->providers[$name] = $method;
 
         // generate a list of formats from this method
         $this->formats = array_merge(
@@ -154,7 +154,7 @@ class Formatter extends AbstractFormatterProvider
 
         // is the formatter in a custom defined
 
-        $callback = $this->formatters[$format];
+        $callback = $this->providers[$format];
 
         if ($callback instanceof Closure) {
             $func = $callback->bindTo($this);
