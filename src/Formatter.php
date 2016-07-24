@@ -56,7 +56,9 @@ class Formatter extends AbstractFormatterProvider
     public function setDefaultFormatter($format)
     {
         if (!$this->hasFormat($format)) {
-            throw new InvalidArgumentException('Default format "'.$format.'" does not exist');
+            throw new InvalidArgumentException(
+                'format "'.$format.'" does not exist'
+            );
         }
         $this->defaultFormatter = $format;
     }
