@@ -93,6 +93,9 @@ class Formatter extends AbstractFormatterProvider
                 'Supplied formatter name "'.$name.'" contains invalid characters'
             );
         }
+        if (is_string($method) && class_exists($method)) {
+            $method = new $method;
+        }
         if (!($method instanceof FormatterProvider || $method instanceof Closure)) {
             throw new InvalidArgumentException('Supplied formatter is not supported');
         }
