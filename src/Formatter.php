@@ -134,24 +134,6 @@ class Formatter extends AbstractFormatterProvider
      *
      * @return array
      */
-    public function getLocalFormats($provider)
-    {
-        $class   = new ReflectionObject($provider);
-        $methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
-        $prefix  = $this->formatMethodPrefix;
-
-        $formatMethods = array_filter($methods, function($method) use ($prefix) {
-            return strpos($method->name, $prefix) === 0;
-        });
-
-        $formats = [];
-        foreach ($formatMethods as $method) {
-            $format = strtolower(substr($method->name, strlen($this->formatMethodPrefix)));
-            $formats[$format] = $method->name;
-        }
-        return $formats;
-    }
-
     public function formats()
     {
 
