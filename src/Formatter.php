@@ -38,7 +38,8 @@ class Formatter extends AbstractFormatterProvider
     /**
      * Constructor
      *
-     * @param array $formatters specif
+     * @param array $formatters The formatters to provide, either as instances
+     *                          of FormatterProvider or closures
      */
     public function __construct($formatters = [])
     {
@@ -48,8 +49,9 @@ class Formatter extends AbstractFormatterProvider
     }
 
     /**
-     * set the
-     * @param [type] $format [description]
+     * Set the default formatter to use
+     *
+     * @param string $format
      */
     public function setDefaultFormatter($format)
     {
@@ -126,13 +128,9 @@ class Formatter extends AbstractFormatterProvider
     }
 
     /**
-     * Get a list of the available formats
-     * These are defined as formats as defined as public 'asFormat'
-     * within this class
+     * Get the current list of provided formatters
      *
-     * @param FormatterProvider $provider
-     * @return array where the key is the format, and the
-     *                     value is a reference to the callback
+     * @return array
      */
     public function getLocalFormats($provider)
     {
@@ -159,6 +157,8 @@ class Formatter extends AbstractFormatterProvider
 
     /**
      * Allow dynamic calls to be made to the formatter
+     *
+     * @todo Is this still needed?
      */
     public function __call($method, $params)
     {

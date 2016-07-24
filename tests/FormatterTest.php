@@ -24,6 +24,10 @@ class FormatterTest extends PHPUnit_Framework_TestCase
         ]);
     }
 
+    /**
+     * [testBasic description]
+     * @return [type] [description]
+     */
     public function testBasic()
     {
         $formatter = $this->formatter;
