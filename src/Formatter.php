@@ -32,6 +32,14 @@ class Formatter extends AbstractFormatterProvider
      */
     private $formatters = [];
 
+    /**
+     * A list of all the available formats. If a formatter is an instance of
+     * FormatterProvider, it's list is exploded using dot notiation.
+     *
+     * @var string[]
+     */
+    private $formats = [];
+
     private $formatMethodPrefix = 'as';
 
     /**
@@ -90,10 +98,38 @@ class Formatter extends AbstractFormatterProvider
         }
         $name = strtolower($name);
         $this->formatters[$name] = $method;
+
+        // generate a list of formats from this method
+        $this->formats = array_merge(
+            $this->formats,
+            $this->getFormatsFromFormatter($method, $name)
+        );
+
         if (!$this->defaultFormatter) {
             $this->setDefaultFormatter($name);
         }
     }
+
+    /**
+     * Get a list of available formats from the supplied formatter
+     *
+     * @param  Closure|FormatterProvider $formatter
+     * @param  string $name Base name of the formatter
+     * @return array
+     */
+    private function getFormatsFromFormatter($formatter, $name)
+    {
+        if ($formatter instanceof Closure) {
+            return [$name];
+        }
+        $formats = $formatter->formats();
+        // prefix each formatter of the object with the name of the formatter
+        return array_map(function ($value) use ($name) {
+            return $name . '.' . $value;
+        }, $formats);
+    }
+
+
 
     /**
      * Format the provided value based on the requested formatter
@@ -136,7 +172,7 @@ class Formatter extends AbstractFormatterProvider
      */
     public function formats()
     {
-        return array_keys($this->formatters);
+        return $this->formats;
     }
 
     /**
@@ -165,6 +201,6 @@ class Formatter extends AbstractFormatterProvider
                 'Format "' . $format . '" is not provided in correct format'
             );
         }
-        return array_key_exists(strtolower($format), $this->formatters);
+        return in_array(strtolower($format), $this->formatters);
     }
 }
