@@ -20,6 +20,9 @@ class FormatterTest extends PHPUnit_Framework_TestCase
                     return $this->nullValue;
                 }
                 return $value;
+            },
+            'return' => function ($value) {
+                return $value;
             }
         ]);
     }
@@ -64,6 +67,41 @@ class FormatterTest extends PHPUnit_Framework_TestCase
         $this->assertSame('ora', $formatter->format('ben'), 'via format()');
 
         $this->assertSame($formatter->nullValue, $formatter->format(null));
+    }
+
+    public function testDefaultFormatter()
+    {
+        $this->assertSame('raw', $this->formatter->getDefaultFormatter());
+        $this->formatter->setDefaultFormatter('return');
+        $this->assertSame('return', $this->formatter->getDefaultFormatter());
+    }
+
+    public function testHasFormat()
+    {
+        $this->assertTrue($this->formatter->hasFormat('raw'));
+        $this->assertFalse($this->formatter->hasFormat('doesnotexist'));
+
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testHasFormatInvalidSyntax()
+    {
+        $this->formatter->hasFormat('i like spaces');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testAddDefaultFormatterNoExist()
+    {
+        $this->formatter->setDefaultFormatter('doesnotexist');
+    }
+
+    public function testAddFormatter()
+    {
+
     }
 
 }
