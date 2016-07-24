@@ -28,7 +28,7 @@ class Formatter extends AbstractFormatterProvider
      * The value is either a Closure, a FQC, or an object that implements the
      * FormatterProvider interface
      *
-     * @var array
+     * @var array list of formatters & providers|closures
      */
     private $formatters = [];
 
@@ -40,7 +40,7 @@ class Formatter extends AbstractFormatterProvider
      * @param array $formatters The formatters to provide, either as instances
      *                          of FormatterProvider or closures
      */
-    public function __construct($formatters = [])
+    public function __construct(array $formatters = [])
     {
         foreach ($formatters as $formatter => $closure) {
             $this->addFormatter($formatter, $closure);
@@ -85,9 +85,10 @@ class Formatter extends AbstractFormatterProvider
                 'Supplied formatter name "'.$name.'" contains invalid characters'
             );
         }
-        if (!($method instanceof FormatterProvider || $method instanceof \Closure)) {
+        if (!($method instanceof FormatterProvider || $method instanceof Closure)) {
             throw new InvalidArgumentException('Supplied formatter is not supported');
         }
+        $name = strtolower($name);
         $this->formatters[$name] = $method;
         if (!$this->defaultFormatter) {
             $this->setDefaultFormatter($name);
