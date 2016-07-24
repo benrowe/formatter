@@ -199,6 +199,6 @@ class Formatter extends AbstractFormatterProvider
                 'Format "' . $format . '" is not provided in correct format'
             );
         }
-        return in_array(strtolower($format), $this->formatters);
+        return in_array(strtolower($format), $this->formats);
     }
 }
