@@ -1,7 +1,8 @@
 <?php
 
 use Benrowe\Formatter\Formatter;
-use Benrowe\Formatter\Providers\Numbers;
+use Benrowe\Formatter\Test\Examples\NumberSampleProvider;
+use Benrowe\Formatter\Test\Examples\SampleProvider;
 // use stdObject;
 
 class FormatterProviderTest extends PHPUnit_Framework_TestCase
@@ -9,10 +10,21 @@ class FormatterProviderTest extends PHPUnit_Framework_TestCase
     public function testConstructor()
     {
         $formatter = new Formatter([
-            'number' => new Numbers,
+            'number' => new NumberSampleProvider,
+            'sample' => new SampleProvider
         ]);
+        $this->assertSame([
+            'number.number',
+            'number.unsigned',
+            'sample.return',
+            'sample.rot',
+            'sample.case'
+        ], $formatter->formats());
         $this->assertTrue($formatter->hasFormat('number.unsigned'));
+
     }
+
+
 
     public function testInvalidFormatter()
     {
