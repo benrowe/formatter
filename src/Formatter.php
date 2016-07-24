@@ -4,6 +4,7 @@ namespace Benrowe\Formatter;
 
 use \ReflectionObject;
 use \ReflectionMethod;
+use \Closure;
 use InvalidArgumentException;
 
 /**
@@ -75,7 +76,7 @@ class Formatter extends AbstractFormatterProvider
      * Add a new or replace a formatter within the stack
      *
      * @param string $name   The name of the formatter
-     * @param \Closure\FormatterProvider $method the object executes the format
+     * @param Closure|FormatterProvider $method the object executes the format
      */
     public function addFormatter($name, $method)
     {
@@ -118,7 +119,7 @@ class Formatter extends AbstractFormatterProvider
 
         $callback = $this->formatters[$format];
 
-        if ($callback instanceof \Closure) {
+        if ($callback instanceof Closure) {
             $func = $callback->bindTo($this);
         } else if (method_exists($this, $callback)) {
             $func = [$this, $callback];
