@@ -22,6 +22,8 @@ abstract class AbstractFormatterProvider implements FormatterProvider
      */
     const METHOD_PATTERN_MATCH = '/^as([A-Z]\w+)$/';
 
+    public $nullValue = '<span>Not Set</span>';
+
     /**
      * Provide a list of formatters this that are available from this provider
      *

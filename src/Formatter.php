@@ -33,8 +33,6 @@ class Formatter extends AbstractFormatterProvider
 
     private $formatMethodPrefix = 'as';
 
-    public $nullValue = '<span>Not Set</span>';
-
     /**
      * Constructor
      *
