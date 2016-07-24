@@ -136,7 +136,7 @@ class Formatter extends AbstractFormatterProvider
      */
     public function formats()
     {
-
+        return array_keys($this->formatters);
     }
 
     /**
