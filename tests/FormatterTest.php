@@ -80,22 +80,17 @@ class FormatterTest extends PHPUnit_Framework_TestCase
     {
         $this->assertTrue($this->formatter->hasFormat('raw'));
         $this->assertFalse($this->formatter->hasFormat('doesnotexist'));
-
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testHasFormatInvalidSyntax()
     {
+        $this->setExpectedException(InvalidArgumentException::class);
         $this->formatter->hasFormat('i like spaces');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testAddDefaultFormatterNoExist()
     {
+        $this->setExpectedException(InvalidArgumentException::class);
         $this->formatter->setDefaultFormatter('doesnotexist');
     }
 
