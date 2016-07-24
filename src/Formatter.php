@@ -156,9 +156,15 @@ class Formatter extends AbstractFormatterProvider
      * Determine if the format exists within the formatter.
      *
      * @return boolean
+     * @throws InvalidArgumentException
      */
     public function hasFormat($format)
     {
+        if (!preg_match("/^[A-Za-z]+(\.[A-Za-z]+)?$/", $format)) {
+            throw new InvalidArgumentException(
+                'Format "' . $format . '" is not provided in correct format'
+            );
+        }
         return array_key_exists(strtolower($format), $this->formatters);
     }
 }
