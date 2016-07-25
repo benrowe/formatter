@@ -14,7 +14,8 @@ class Numbers extends AbstractFormatterProvider
      */
     public function asCurrency($value)
     {
-
+        $value = $this->normaliseValue($value);
+        return $value;
     }
 
     /**
@@ -25,7 +26,11 @@ class Numbers extends AbstractFormatterProvider
      */
     public function asUnsigned($value)
     {
-
+        $value = $this->normaliseValue($value);
+        if ($value < 0) {
+            $value *= -1;
+        }
+        return $value;
     }
 
     /**
@@ -36,7 +41,7 @@ class Numbers extends AbstractFormatterProvider
      */
     public function asNumber($value)
     {
-
+        return $this->normaliseValue($value);
     }
 
     /**
