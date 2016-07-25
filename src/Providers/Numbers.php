@@ -9,13 +9,14 @@ class Numbers extends AbstractFormatterProvider
     /**
      * Display the value as currency
      *
-     * @param  mixed $value 
+     * @param  mixed $value
      * @return string
      */
     public function asCurrency($value)
     {
         $value = $this->normaliseValue($value);
-        return $value;
+        
+        return (string)$value;
     }
 
     /**
