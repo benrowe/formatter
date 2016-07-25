@@ -154,13 +154,14 @@ class Formatter extends AbstractFormatterProvider
         }
 
         // is the formatter in a custom defined
-
-        $callback = $this->providers[$format];
-
-        if ($callback instanceof Closure) {
+        if (strpos($format, '.') > 0) {
+            list($provider, $format) = explode($format, '.');
+            $callback = $this->provider[$provider];
+            $fun = [$callback, 'format'];
+        } else {
+            // Closure
+            $callback = $this->providers[$format];
             $func = $callback->bindTo($this);
-        } else if (method_exists($this, $callback)) {
-            $func = [$this, $callback];
         }
 
         return call_user_func_array($func, $params);
