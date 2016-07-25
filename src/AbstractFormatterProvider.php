@@ -36,16 +36,27 @@ abstract class AbstractFormatterProvider implements FormatterProvider
         $reflect = new ReflectionClass($this);
         $formats = [];
         foreach ($reflect->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
-            $isFormatter =
-                !$method->isStatic() &&
-                preg_match(self::METHOD_PATTERN_MATCH, $method->getName(), $match);
-            if (!$isFormatter || !$match) {
-                continue;
+            $name = $this->getFormatterName($method);
+            if ($name) {
+                $formats[] = $name;
             }
-            $formats[] = strtolower($match[1]);
         }
 
         return $formats;
+    }
+
+    /**
+     * Get the name of the formatter method
+     *
+     * @param ReflectionMethod $method
+     * @return string
+     */
+    private getFormatterName(ReflectionMethod $method)
+    {
+        preg_match(self::METHOD_PATTERN_MATCH, $method->getName(), $match);
+        $isFormatter = !$method->isStatic() && $match;
+
+        return $isFormatter ? strtolower($match[1]) : '';
     }
 
     /**
