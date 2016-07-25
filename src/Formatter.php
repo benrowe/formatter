@@ -109,7 +109,10 @@ class Formatter extends AbstractFormatterProvider
         );
 
         if (!$this->defaultFormatter) {
-            $this->setDefaultFormatter(current($this->formats));
+            $format = current($this->formats);
+            if ($format) {
+                $this->setDefaultFormatter($format);
+            }
         }
     }
 

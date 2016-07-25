@@ -39,7 +39,7 @@ abstract class AbstractFormatterProvider implements FormatterProvider
             $isFormatter =
                 !$method->isStatic() &&
                 preg_match(self::METHOD_PATTERN_MATCH, $method->getName(), $match);
-            if (!$isFormatter) {
+            if (!$isFormatter || !$match) {
                 continue;
             }
             $formats[] = strtolower($match[1]);
@@ -79,7 +79,7 @@ abstract class AbstractFormatterProvider implements FormatterProvider
      * Format the supplied value, based on the desired format + configuration
      *
      * @param  mixed $value The value to format
-     * @param  string|array $format either the formatter name, or the formatter
+     * @param  string|array|null $format either the formatter name, or the formatter
      *                              config as an array. If it's an array, the
      *                              first item must be the same of the formatter
      * @return mixed
