@@ -6,20 +6,33 @@ use Benrowe\Formatter\AbstractFormatterProvider;
 
 class Numbers extends AbstractFormatterProvider
 {
+    /**
+     * Display the value as currency
+     *
+     * @param  mixed $value 
+     * @return string
+     */
     public function asCurrency($value)
     {
 
     }
 
+    /**
+     * Displays the number as an unsigned value
+     *
+     * @param  mixed $value
+     * @return float|int
+     */
     public function asUnsigned($value)
     {
 
     }
 
     /**
-     * [asNumber description]
-     * @param  [type] $value [description]
-     * @return [type]        [description]
+     * Format the supplied value as a number
+     *
+     * @param  mixed $value
+     * @return float|int
      */
     public function asNumber($value)
     {

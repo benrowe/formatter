@@ -30,7 +30,7 @@ interface FormatterProvider
      * Format the corresponding value to the format provided
      *
      * @param  mixed $value
-     * @param  string|array $format either the format as a string, or an array,
+     * @param  string|array|null $format either the format as a string, or an array,
      *                              where the first element is the format type
      * @return mixed
      */

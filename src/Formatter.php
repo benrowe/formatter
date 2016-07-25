@@ -118,7 +118,7 @@ class Formatter extends AbstractFormatterProvider
      *
      * @param  Closure|FormatterProvider $formatter
      * @param  string $name Base name of the formatter
-     * @return array
+     * @return string[]
      */
     private function getFormatsFromFormatter($formatter, $name)
     {
