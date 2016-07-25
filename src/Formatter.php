@@ -156,8 +156,10 @@ class Formatter extends AbstractFormatterProvider
         // is the formatter in a custom defined
         if (strpos($format, '.') > 0) {
             list($provider, $format) = explode($format, '.');
-            $callback = $this->provider[$provider];
-            $fun = [$callback, 'format'];
+            $callback = $this->providers[$provider];
+            $func = [$callback, 'format'];
+            array_unshift($params, $format);
+            $params = [$value, $params];
         } else {
             // Closure
             $callback = $this->providers[$format];
