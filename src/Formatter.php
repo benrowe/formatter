@@ -108,6 +108,17 @@ class Formatter extends AbstractFormatterProvider
             $this->getFormatsFromFormatter($method, $name)
         );
 
+        $this->checkDefaultFormatter();
+    }
+
+    /**
+     * Check the default format and set the default if we have at least
+     * one formatter
+     *
+     * @return nil
+     */
+    private function checkDefaultFormatter()
+    {
         if (!$this->defaultFormatter) {
             $format = current($this->formats);
             if ($format) {
