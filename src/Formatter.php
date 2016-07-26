@@ -177,20 +177,7 @@ class Formatter extends AbstractFormatterProvider
             );
         }
 
-        // is the formatter in a custom defined
-        if (strpos($format, '.') > 0) {
-            list($provider, $format) = explode($format, '.');
-            $callback = $this->providers[$provider];
-            $func = [$callback, 'format'];
-            array_unshift($params, $format);
-            $params = [$value, $params];
-        } else {
-            // Closure
-            $callback = $this->providers[$format];
-            $func = $callback->bindTo($this);
-        }
-
-        return call_user_func_array($func, $params);
+        return $this->callFormatter($format, $params);
     }
 
     /**
@@ -246,5 +233,31 @@ class Formatter extends AbstractFormatterProvider
             );
         }
         return true;
+    }
+
+    /**
+     * Calls the requested formatting method based on it's simple formatting name
+     * + passes through the requested params
+     *
+     * @param  string $format
+     * @param  array  $params
+     * @return mixed
+     */
+    private function callFormatter($format, array $params)
+    {
+        // is the formatter in a custom defined
+        if (strpos($format, '.') > 0) {
+            list($provider, $format) = explode($format, '.');
+            $callback = $this->providers[$provider];
+            $func = [$callback, 'format'];
+            array_unshift($params, $format);
+            $params = [$value, $params];
+        } else {
+            // Closure
+            $callback = $this->providers[$format];
+            $func = $callback->bindTo($this);
+        }
+
+        return call_user_func_array($func, $params);
     }
 }
