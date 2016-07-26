@@ -11,7 +11,7 @@ class FormatterProviderTest extends PHPUnit_Framework_TestCase
     {
         $formatter = new Formatter([
             'number' => new NumberSampleProvider,
-            'sample' => SampleProvider::class
+            'sample' => 'Benrowe\Formatter\Test\Examples\SampleProvider'
         ]);
         $this->assertSame([
             'number.number',

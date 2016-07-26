@@ -51,7 +51,7 @@ abstract class AbstractFormatterProvider implements FormatterProvider
      * @param ReflectionMethod $method
      * @return string
      */
-    private getFormatterName(ReflectionMethod $method)
+    private function getFormatterName(ReflectionMethod $method)
     {
         preg_match(self::METHOD_PATTERN_MATCH, $method->getName(), $match);
         $isFormatter = !$method->isStatic() && $match;
