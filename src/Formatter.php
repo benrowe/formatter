@@ -85,17 +85,13 @@ class Formatter extends AbstractFormatterProvider
      *
      * @param string $name   The name of the formatter
      * @param Closure|FormatterProvider $method the object executes the format
+     * @throws InvalidArgumentException
      */
     public function addFormatter($name, $method)
     {
-        if (!preg_match("/^[\w]+$/", $name)) {
-            throw new InvalidArgumentException(
-                'Supplied formatter name "'.$name.'" contains invalid characters'
-            );
-        }
-        if (is_string($method) && class_exists($method)) {
-            $method = new $method;
-        }
+        $this->validateProviderName($name);
+        $method = $this->getFormatterObject($method);
+
         if (!($method instanceof FormatterProvider || $method instanceof Closure)) {
             throw new InvalidArgumentException('Supplied formatter is not supported');
         }
@@ -109,6 +105,20 @@ class Formatter extends AbstractFormatterProvider
         );
 
         $this->checkDefaultFormatter();
+    }
+
+    /**
+     * Detect and convert the FQN of a formatter provider into an instance
+     *
+     * @param  FormatterProvider|Closure|string $formatter
+     * @return FormatterProvider|Closure
+     */
+    private function getFormatterObject($formatter)
+    {
+        if (is_string($formatter) && class_exists($formatter)) {
+            $formatter = new $formatter;
+        }
+        return $formatter;
     }
 
     /**
@@ -220,5 +230,21 @@ class Formatter extends AbstractFormatterProvider
             );
         }
         return in_array(strtolower($format), $this->formats);
+    }
+
+    /**
+     * Validate the provider name
+     *
+     * @param  string $name
+     * @return boolean
+     */
+    private function validateProviderName($name)
+    {
+        if (!preg_match("/^[\w]+$/", $name)) {
+            throw new InvalidArgumentException(
+                'Supplied formatter name "'.$name.'" contains invalid characters'
+            );
+        }
+        return true;
     }
 }
