@@ -28,7 +28,7 @@ class FormatterProviderTest extends PHPUnit_Framework_TestCase
 
     public function testInvalidFormatter()
     {
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->setExpectedException('InvalidArgumentException');
         $formatter = new Formatter([
             'fake' => new stdClass,
         ]);

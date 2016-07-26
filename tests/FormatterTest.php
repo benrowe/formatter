@@ -84,13 +84,13 @@ class FormatterTest extends PHPUnit_Framework_TestCase
 
     public function testHasFormatInvalidSyntax()
     {
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->setExpectedException('InvalidArgumentException');
         $this->formatter->hasFormat('i like spaces');
     }
 
     public function testAddDefaultFormatterNoExist()
     {
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->setExpectedException('InvalidArgumentException');
         $this->formatter->setDefaultFormatter('doesnotexist');
     }
 
