@@ -240,7 +240,7 @@ class Formatter extends AbstractFormatterProvider
      * + passes through the requested params
      *
      * @param  string $format
-     * @param  array  $params
+     * @param  array  $params the first is the value
      * @return mixed
      */
     private function callFormatter($format, array $params)
