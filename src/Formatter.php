@@ -267,9 +267,4 @@ class Formatter extends AbstractFormatterProvider
 
         return call_user_func_array($func, $params);
     }
-
-    public function someMethod($value)
-    {
-        return $value;
-    }
 }
