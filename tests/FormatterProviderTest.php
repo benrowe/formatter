@@ -49,6 +49,12 @@ class FormatterProviderTest extends PHPUnit_Framework_TestCase
         ]);
     }
 
+    public function testInvalidFormatArray()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->formatter->format('value', 'number.');
+    }
+
     public function testFormat()
     {
         $this->assertSame($this->formatter->format('foo', 'sample.return'), 'foo');

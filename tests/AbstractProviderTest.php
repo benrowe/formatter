@@ -28,6 +28,35 @@ class AbstractProviderTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->provider->hasFormat('doesnotexist'));
     }
 
+    // public function testInvalidFormatName()
+
+    /**
+     * @dataProvider invalidFormats
+     */
+    public function testInvalidFormatName($formatName)
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->provider->hasFormat($formatName);
+    }
+
+    public function testInvalidFormat()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->provider->format('value', 'doesntexist');
+    }
+    public function testInvalidFormatArray()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->provider->format('value', ['']);
+    }
+
+    public function invalidFormats()
+    {
+        return [
+            'funkyChars' => ['!'],
+        ];
+    }
+
     /**
      * @expectedException InvalidArgumentException
      *

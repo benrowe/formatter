@@ -94,9 +94,18 @@ class FormatterTest extends PHPUnit_Framework_TestCase
         $this->formatter->setDefaultFormatter('doesnotexist');
     }
 
-    public function testAddFormatter()
+    public function testNonExistFormat()
     {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->formatter->format('value', 'madeup');
+    }
 
+    public function testAddFormatterInvalid()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->formatter->addFormatter('!', function($value) {
+            return $value;
+        });
     }
 
 }
