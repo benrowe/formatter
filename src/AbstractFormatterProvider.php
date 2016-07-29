@@ -73,7 +73,7 @@ abstract class AbstractFormatterProvider implements FormatterProvider
         $params = [$value];
 
         if (is_array($format)) {
-            if (!isset($format[0])) {
+            if (!isset($format[0]) || trim($format[0]) == '') {
                 throw new InvalidArgumentException(
                     'The $format must contain at least one element'
                 );
