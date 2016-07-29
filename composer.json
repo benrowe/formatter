@@ -13,6 +13,9 @@
       "php": "^5.4|^7.0",
       "phpunit/phpunit": "~4.0"
     },
+    "suggest": {
+      "carbon/carbon": "*"
+    },
     "autoload": {
         "psr-4": {
             "Benrowe\\Formatter\\": "src/"
@@ -22,5 +25,10 @@
         "psr-4": {
             "Benrowe\\Formatter\\Test\\": "tests"
         }
+    },
+    "scripts": {
+        "test": "phpunit --configuration build/phpunit.xml",
+        "testcover": "phpunit --configuration build/phpunit.xml --coverage-html=build/output/html",
+        "testci": "phpunit --configuration build/phpunit.xml --coverage-clover=build/output/coverage"
     }
 }
