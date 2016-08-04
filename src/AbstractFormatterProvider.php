@@ -123,7 +123,7 @@ abstract class AbstractFormatterProvider implements FormatterProvider
      */
     public function hasFormat($format)
     {
-        if (!preg_match("/^[A-Za-z]+$/", $format)) {
+        if (!preg_match("/^[A-Za-z_]+$/", $format)) {
             throw new InvalidArgumentException(
                 'Format "' . $format . '" is not provided in correct format'
             );
