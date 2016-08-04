@@ -1,6 +1,7 @@
-/vendor/
-/node_modules/
-cache.properties
+build
 composer.lock
+docs
+vendor
+node_modules
+cache.properties
 write.json
-/build/output/

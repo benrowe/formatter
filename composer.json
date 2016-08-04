@@ -1,20 +1,28 @@
 {
     "name": "benrowe/formatter",
+    "type": "library",
     "description": "A value formatter to display data to end users",
-    "keywords": ["formatter", "output", "view"],
+    "keywords": ["benrowe","formatter", "output", "view"],
+    "homepage": "https://github.com/benrowe/formatter",
     "license": "MIT",
     "authors": [
         {
             "name": "Ben Rowe",
-            "email": "ben.rowe.83@gmail.com"
+            "email": "ben.rowe.83@gmail.com",
+            "homepage": "http://benrowe.info/formatter",
+            "role": "Developer"
         }
     ],
     "require": {
-      "php": "^5.4|^7.0",
-      "phpunit/phpunit": "~4.0"
+        "php" : "~5.4|~7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "~4.0||~5.0",
+        "scrutinizer/ocular": "~1.1",
+        "squizlabs/php_codesniffer": "~2.3"
     },
     "suggest": {
-      "carbon/carbon": "*"
+        "carbon/carbon": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -23,12 +31,19 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Benrowe\\Formatter\\Test\\": "tests"
+            "Benrowe\\Formatter\\Tests\\": "tests"
         }
     },
     "scripts": {
-        "test": "phpunit --configuration build/phpunit.xml",
-        "testcover": "phpunit --configuration build/phpunit.xml --coverage-html=build/output/html",
-        "testci": "phpunit --configuration build/phpunit.xml --coverage-clover=build/output/coverage"
+        "test": "phpunit",
+        "format": "phpcbf --standard=psr2 src/"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
