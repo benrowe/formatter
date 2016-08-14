@@ -1,8 +1,8 @@
 <?php
 
 use Benrowe\Formatter\Formatter;
-use Benrowe\Formatter\Test\Examples\NumberSampleProvider;
-use Benrowe\Formatter\Test\Examples\SampleProvider;
+use Benrowe\Formatter\Tests\Examples\NumberSampleProvider;
+use Benrowe\Formatter\Tests\Examples\SampleProvider;
 // use stdObject;
 
 /**
@@ -19,7 +19,7 @@ class FormatterProviderTest extends PHPUnit_Framework_TestCase
     {
         $this->formatter = new Formatter([
             'number' => new NumberSampleProvider,
-            'sample' => 'Benrowe\Formatter\Test\Examples\SampleProvider'
+            'sample' => 'Benrowe\Formatter\Tests\Examples\SampleProvider'
         ]);
     }
 
@@ -27,7 +27,7 @@ class FormatterProviderTest extends PHPUnit_Framework_TestCase
     {
         $formatter = new Formatter([
             'number' => new NumberSampleProvider,
-            'sample' => 'Benrowe\Formatter\Test\Examples\SampleProvider'
+            'sample' => 'Benrowe\Formatter\Tests\Examples\SampleProvider'
         ]);
         $this->assertSame([
             'number.number',

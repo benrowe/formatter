@@ -1,6 +1,6 @@
 <?php
 
-use Benrowe\Formatter\Test\Examples\SampleProvider;
+use Benrowe\Formatter\Tests\Examples\SampleProvider;
 
 /**
  * Test a concrete version of the AbstractFormatterProvider
