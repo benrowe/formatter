@@ -2,7 +2,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/benrowe/laravel-config.git"
+    "url": "https://github.com/benrowe/formatter.git"
   },
   "devDependencies": {
     "gulp-debug": "^2.1.2",
