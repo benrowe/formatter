@@ -52,17 +52,53 @@ class DateTime extends AbstractFormatterProvider
     }
 
     /**
-     * Take in a number of seconds and display that as a human readable amount of time
+     * Take in a number of seconds and display that as a human readable amount
+     * of time
      *
-     * @param  int $value
+     * From: https://jonlabelle.com/snippets/view/php/convert-seconds-to-human-readable
+     *
+     * @param  int $esconds
      * @return string
-     * @todo implement
+     * @todo allow units to be overridden (non-english..)
      */
-    public function asHuman($value)
+    public function asDurationHuman($seconds, $delimit = ', ')
     {
-        // $int = CarbonInterval::seconds($value);
+        if ($seconds === null) {
+            return $this->nullValue;
+        }
 
-        return '';
+        $units = [
+            'Day'    => 86400,
+            'Hour'   => 3600,
+            'Minute' => 60,
+            'Second' => 1
+        ];
+
+        $parts = [];
+
+        foreach ($units as $label => $duration) {
+            $div = floor($seconds / $duration);
+            if ($div == 0) {
+                continue;
+            }
+
+            $part = $div . ' ' . $label;
+            if ($div != 1) {
+                $part .= 's';
+            }
+            $parts[] = $part;
+
+            $seconds %= $duration;
+
+        }
+
+        $last = array_pop($parts);
+
+        if (empty($parts)) {
+            return $last;
+        }
+
+        return join($delimit, $parts) . ' and ' . $last;
     }
 
     /**
