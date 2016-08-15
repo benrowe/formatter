@@ -56,10 +56,13 @@ class DateTime extends AbstractFormatterProvider
      *
      * @param  int $value
      * @return string
+     * @todo implement
      */
     public function asHuman($value)
     {
-        $int = CarbonInterval::seconds($value);
+        // $int = CarbonInterval::seconds($value);
+
+        return '';
     }
 
     /**
