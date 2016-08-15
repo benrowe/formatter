@@ -89,7 +89,6 @@ class DateTime extends AbstractFormatterProvider
             $parts[] = $part;
 
             $seconds %= $duration;
-
         }
 
         $last = array_pop($parts);
