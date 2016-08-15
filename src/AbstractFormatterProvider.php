@@ -2,9 +2,9 @@
 
 namespace Benrowe\Formatter;
 
+use InvalidArgumentException;
 use ReflectionClass;
 use ReflectionMethod;
-use InvalidArgumentException;
 
 /**
  * AbstractFormatterProvider

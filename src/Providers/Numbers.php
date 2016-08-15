@@ -4,6 +4,9 @@ namespace Benrowe\Formatter\Providers;
 
 use Benrowe\Formatter\AbstractFormatterProvider;
 
+/**
+ * @package Benrowe\Formatter
+ */
 class Numbers extends AbstractFormatterProvider
 {
     /**
@@ -15,7 +18,7 @@ class Numbers extends AbstractFormatterProvider
     public function asCurrency($value)
     {
         $value = $this->normaliseValue($value);
-        
+
         return (string)$value;
     }
 

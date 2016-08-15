@@ -183,7 +183,7 @@ class Formatter extends AbstractFormatterProvider
     /**
      * Get the current list of available formats
      *
-     * @return array
+     * @return string[]
      */
     public function formats()
     {
