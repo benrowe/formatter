@@ -15,16 +15,37 @@ use Carbon\CarbonInterval;
  */
 class DateTime extends AbstractFormatterProvider
 {
+    /**
+     * Format the datetime as a date
+     *
+     * @param  mixed $value
+     * @param  string $format
+     * @return string
+     */
     public function asDate($value, $format = 'Y-m-d')
     {
         return $this->output($value, $format);
     }
 
+    /**
+     * Format the datetime as a date
+     *
+     * @param  mixed $value
+     * @param  string $format
+     * @return string
+     */
     public function asTime($value, $format = 'H:i:s')
     {
         return $this->output($value, $format);
     }
 
+    /**
+     * Format the datetime as a date
+     *
+     * @param  mixed $value
+     * @param  string $format
+     * @return string
+     */
     public function asDateTime($value, $format = 'Y-m-d H:i:s')
     {
         return $this->output($value, $format);
@@ -41,6 +62,13 @@ class DateTime extends AbstractFormatterProvider
         $int = CarbonInterval::seconds($value);
     }
 
+    /**
+     * Generate the output from the value
+     *
+     * @param  mixed $value the datetime value
+     * @param  string $format format string
+     * @return string
+     */
     private function output($value, $format)
     {
         return $this
@@ -48,6 +76,12 @@ class DateTime extends AbstractFormatterProvider
             ->format($format);
     }
 
+    /**
+     * Convert the datetime input into a instance of Carbon
+     *
+     * @param  mixed $value the datetime value
+     * @return Carbon
+     */
     private function normaliseValue($value)
     {
         $carbon = $this->getCarbon();
@@ -62,6 +96,7 @@ class DateTime extends AbstractFormatterProvider
      * Get an instance of the carbon datetime handler
      *
      * @return Carbon
+     * @throws FormatterException if carbon isn't available
      */
     private function getCarbon()
     {
