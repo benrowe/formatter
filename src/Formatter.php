@@ -125,13 +125,13 @@ class Formatter extends AbstractFormatterProvider
      * Check the default format and set the default if we have at least
      * one formatter
      *
-     * @return nil
+     * @return nil|null
      */
     private function checkDefaultFormatter()
     {
         if (!$this->defaultFormatter) {
             $format = current($this->formats);
-            if ($format) {
+            if ($format !== false) {
                 $this->setDefaultFormatter($format);
             }
         }
