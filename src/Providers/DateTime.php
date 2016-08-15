@@ -4,7 +4,6 @@ namespace Benrowe\Formatter\Providers;
 
 use Benrowe\Formatter\AbstractFormatterProvider;
 use Carbon\Carbon;
-use Carbon\CarbonInterval;
 
 /**
  * DateTime Formatter
@@ -57,7 +56,7 @@ class DateTime extends AbstractFormatterProvider
      *
      * From: https://jonlabelle.com/snippets/view/php/convert-seconds-to-human-readable
      *
-     * @param  int $esconds
+     * @param  int $seconds
      * @return string
      * @todo allow units to be overridden (non-english..)
      */
