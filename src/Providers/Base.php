@@ -48,6 +48,9 @@ class Base extends AbstractFormatterProvider
      */
     public function asBoolean($value)
     {
-        return $value;
+        if ($value === null) {
+            return $this->nullValue;
+        }
+        return $value ? $this->booleanFormat[1] : $this->booleanFormat[0];
     }
 }
