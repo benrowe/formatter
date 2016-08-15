@@ -6,7 +6,6 @@ use Benrowe\Formatter\AbstractFormatterProvider;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 
-
 /**
  * DateTime Formatter
  *
