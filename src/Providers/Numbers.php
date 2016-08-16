@@ -17,9 +17,21 @@ class Numbers extends AbstractFormatterProvider
      */
     public function asCurrency($value)
     {
+        if ($value === null) {
+            return $this->nullValue;
+        }
+
         $value = $this->normaliseValue($value);
 
-        return (string)$value;
+        $prefix = '$';
+        if ($value < 0) {
+            $prefix = '-$';
+            $value *= -1;
+        }
+
+        $newValue = number_format($value, 2);
+
+        return $prefix.$newValue;
     }
 
     /**
@@ -30,6 +42,10 @@ class Numbers extends AbstractFormatterProvider
      */
     public function asUnsigned($value)
     {
+        if ($value === null) {
+            return $this->nullValue;
+        }
+
         $value = $this->normaliseValue($value);
         if ($value < 0) {
             $value *= -1;
@@ -45,6 +61,10 @@ class Numbers extends AbstractFormatterProvider
      */
     public function asNumber($value)
     {
+        if ($value === null) {
+            return $this->nullValue;
+        }
+        
         return $this->normaliseValue($value);
     }
 
@@ -59,6 +79,7 @@ class Numbers extends AbstractFormatterProvider
         if (!is_numeric($value)) {
             $value = 0;
         }
-        return (float)$value;
+        // cast the value to int or float based on its true type
+        return (float)$value === (float)(int)$value ? (int)$value : (float)$value;
     }
 }
