@@ -1,12 +1,15 @@
 <?php
 
+use Benrowe\Formatter\Providers\DateTime;
+use Carbon\Carbon;
+
 class DateTimeProviderTest extends PHPUnit_Framework_TestCase
 {
     protected $provider;
 
     public function setUp()
     {
-        $this->provider = new \Benrowe\Formatter\Providers\DateTime;
+        $this->provider = new DateTime(new Carbon);
     }
 
     public function dataDurationHuman()

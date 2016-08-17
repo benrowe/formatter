@@ -14,6 +14,13 @@ use Carbon\Carbon;
  */
 class DateTime extends AbstractFormatterProvider
 {
+    protected $carbon;
+
+    public function __construct(Carbon $carbon)
+    {
+        $this->carbon = $carbon;
+    }
+
     /**
      * Format the datetime as a date
      *
@@ -137,11 +144,6 @@ class DateTime extends AbstractFormatterProvider
      */
     private function getCarbon()
     {
-        if (!class_exists('Carbon\Carbon')) {
-            throw new FormatterException(
-                'Unable to load the nesbot/carbon dependency.'
-            );
-        }
-        return new Carbon;
+        return $this->carbon;
     }
 }
