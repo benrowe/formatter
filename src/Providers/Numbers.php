@@ -72,7 +72,7 @@ class Numbers extends AbstractFormatterProvider
      * Convert the supplied value into a valid number value
      *
      * @param  mixed $value
-     * @return float
+     * @return float|int
      */
     private function normaliseValue($value)
     {
