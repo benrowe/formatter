@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status](https://travis-ci.org/benrowe/formatter.svg?branch=master)](https://travis-ci.org/benrowe/formatter)
+[![Build Status][ico-travis]][link-travis]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
@@ -67,5 +67,5 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-scrutinizer]: https://scrutinizer-ci.com/g/benrowe/formatter/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/benrowe/formatter
 [link-downloads]: https://packagist.org/packages/benrowe/formatter
-[link-author]: https://github.com/:author_username
+[link-author]: https://github.com/benrowe
 [link-contributors]: ../../contributors
