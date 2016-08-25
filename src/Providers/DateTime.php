@@ -57,6 +57,13 @@ class DateTime extends AbstractFormatterProvider
         return $this->output($value, $format);
     }
 
+    private $durationUnits = [
+        'Day'    => 86400,
+        'Hour'   => 3600,
+        'Minute' => 60,
+        'Second' => 1
+    ];
+
     /**
      * Take in a number of seconds and display that as a human readable amount
      * of time
@@ -73,16 +80,9 @@ class DateTime extends AbstractFormatterProvider
             return $this->nullValue;
         }
 
-        $units = [
-            'Day'    => 86400,
-            'Hour'   => 3600,
-            'Minute' => 60,
-            'Second' => 1
-        ];
-
         $parts = [];
 
-        foreach ($units as $label => $duration) {
+        foreach ($this->durationUnits as $label => $duration) {
             $div = floor($seconds / $duration);
             if ($div == 0) {
                 continue;
