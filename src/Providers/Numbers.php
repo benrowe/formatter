@@ -38,7 +38,7 @@ class Numbers extends AbstractFormatterProvider
      * Displays the number as an unsigned value
      *
      * @param  mixed $value
-     * @return float|int
+     * @return double|int|string
      */
     public function asUnsigned($value)
     {
@@ -57,7 +57,7 @@ class Numbers extends AbstractFormatterProvider
      * Format the supplied value as a number
      *
      * @param  mixed $value
-     * @return float|int
+     * @return double|int|string
      */
     public function asNumber($value)
     {
