@@ -5,6 +5,8 @@ namespace Benrowe\Formatter\Providers;
 use Benrowe\Formatter\AbstractFormatterProvider;
 
 /**
+ * Provides formatters related to computer related data such as filesizes
+ *
  * @package Benrowe\Formatter
  */
 class Computer extends AbstractFormatterProvider

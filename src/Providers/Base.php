@@ -5,6 +5,7 @@ namespace Benrowe\Formatter\Providers;
 use Benrowe\Formatter\AbstractFormatterProvider;
 
 /**
+ * Provides formatter for base variable types (string, boolean, etc)
  * @package Benrowe\Formatter
  */
 class Base extends AbstractFormatterProvider

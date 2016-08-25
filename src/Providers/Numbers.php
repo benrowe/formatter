@@ -64,7 +64,7 @@ class Numbers extends AbstractFormatterProvider
         if ($value === null) {
             return $this->nullValue;
         }
-        
+
         return $this->normaliseValue($value);
     }
 
