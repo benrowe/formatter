@@ -8,8 +8,14 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+Formatter is a real time value decorator system. It's designed to provide a
+consistent interface for formatting values, regardless of the method designed.
+
+This allows for runtime formatting to be controlled via data rather than via
+code.
+
+The formatter allows you to register & override formatter providers, giving you
+full control over the final output.
 
 ## Install
 
@@ -48,7 +54,8 @@ If you discover any security related issues, please email ben.rowe.83@gmail.com 
 
 ## Credits
 
-- [Ben Rowe][http://benrowe.info/formatter]
+- [Ben Rowe](http://benrowe.info/p/
+    formatter)
 - [All Contributors][link-contributors]
 
 ## License
